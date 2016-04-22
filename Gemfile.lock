@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    activeadmin_jobs (0.0.1)
+    activeadmin_jobs (0.1.0)
       rails (~> 4.2.5.2)
 
 GEM
