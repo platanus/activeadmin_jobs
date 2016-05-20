@@ -1,4 +1,6 @@
 require "job_notifier"
+require "devise"
+require "activeadmin"
 require "activeadmin_jobs/engine"
 
 module ActiveadminJobs

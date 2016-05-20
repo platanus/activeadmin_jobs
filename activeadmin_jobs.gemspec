@@ -19,6 +19,8 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 4.2", ">= 4.2.0"
   s.add_dependency "job_notifier", "~> 0.1", ">= 0.1.1"
+  s.add_dependency "devise", "~> 3.5", ">= 3.5.0"
+  s.add_dependency "activeadmin", "~> 1.0.0.pre2"
 
   s.add_development_dependency "sqlite3"
 end
