@@ -1,1 +1,11 @@
 @import "growl";
+
+$pending-color: #e67e22;
+$failed-color: #c0392b;
+$finished-color: #27ae60;
+
+.status_tag {
+  &.pending { background: $pending-color; }
+  &.failed { background: $failed-color; }
+  &.finished { background: $finished-color; }
+}
