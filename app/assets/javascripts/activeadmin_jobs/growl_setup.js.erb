@@ -4,31 +4,31 @@ JobNotifier.jobsUrl = "<%= AdminHelpers.jobs_url %>";
 JobNotifier.onNotify = function(result) {
   DEFAULT_MESSAGES = {
     pending: {
-      title: "Pending Job",
+      title: 'Pending Job',
       one: '1 job was added to the queue...',
       other: 'jobs were added to the queue...'
     },
     finished: {
-      title: "Completed Job",
-      one: "1 job was successfully completed!",
-      other: "jobs where successfully completed!"
+      title: 'Completed Job',
+      one: '1 job was successfully completed!',
+      other: 'jobs where successfully completed!'
     },
     failed: {
-      title: "Failed Job",
-      one: "1 job was completed, but it contains errors...",
-      other: "jobs where completed, but they contains errors..."
+      title: 'Failed Job',
+      one: '1 job was completed, but it contains errors...',
+      other: 'jobs where completed, but they contains errors...'
     }
   };
 
   function defaultTranslation(status, count) {
-    return DEFAULT_MESSAGES[status][count]
+    return DEFAULT_MESSAGES[status][count];
   }
 
   function findTranslation(jobClass, status, key) {
     try {
       return JobNotifier.translations[jobClass][status][key];
     } catch(err) {
-      console.info('Translation not found. Using default...');
+      console.info('Translation not found. Using default...', jobClass, status, key);
     }
 
     return defaultTranslation(status, key);
@@ -38,35 +38,87 @@ JobNotifier.onNotify = function(result) {
      return str.replace(/\W+/g, '_').replace(/([a-z\d])([A-Z])/g, '$1_$2').toLowerCase();
   }
 
-  function showPopUp(title, msg, status) {
-    msg = { title: title, message: msg, duration: 6000 };
+  function prepareMessage(job, count) {
+    var jobClass = camelToDash(job.job_class);
+    var jobsUrl = JobNotifier.jobsUrl;
+    var msg = '';
 
-    switch(status) {
-      case "pending":
+    if(count == 1) {
+      jobsUrl += '/' + job.id;
+      msg = findTranslation(jobClass, job.status, 'one');
+    } else {
+      msg = count + ' ' + findTranslation(jobClass, job.status, 'other');
+    }
+
+    var link = '<a href="' + jobsUrl + '">' + msg + '</a>';
+
+    return {
+      title: findTranslation(jobClass, job.status, 'title'),
+      message: link,
+      duration: 6000
+    };
+  }
+
+  function showPopUp(job, count) {
+    var msg = prepareMessage(job, count);
+
+    switch(job.status) {
+      case 'pending':
         $.growl.warning(msg);
         break;
-      case "finished":
+      case 'finished':
         $.growl.notice(msg);
         break;
-      case "failed":
+      case 'failed':
         $.growl.error(msg);
+        break;
+      default:
+        console.error('Invalid job status given', job.status);
     }
   }
 
+  function groupJobsByClass(jobs) {
+    var groupedJobs = {};
+
+    for(i = 0; i < jobs.length; i++) {
+      var job = jobs[i];
+      var jobClass = camelToDash(job.job_class);
+
+      if(!groupedJobs[jobClass]) {
+        groupedJobs[jobClass] = {};
+      }
+
+      if(!groupedJobs[jobClass][job.status]) {
+        groupedJobs[jobClass][job.status] = [];
+      }
+
+      groupedJobs[jobClass][job.status].push(job);
+    }
+
+    return groupedJobs;
+  }
+
   function showMultiJobMsg(jobs) {
-    return 'TODO';
+    var groupedJobs = groupJobsByClass(jobs);
+
+    for(var jobClass in groupedJobs) {
+      if(groupedJobs.hasOwnProperty(jobClass)) {
+        for(var status in groupedJobs[jobClass]) {
+          if(groupedJobs[jobClass].hasOwnProperty(status)) {
+            jobs = groupedJobs[jobClass][status];
+            showPopUp(jobs[0], jobs.length);
+          }
+        }
+      }
+    }
   }
 
   function showSingleJobMsg(job) {
-    var jobClass = camelToDash(job.job_class)
-    var title = findTranslation(jobClass, job.status, "title");
-    var msg = findTranslation(jobClass, job.status, "one");
-    var link = '<a href="' + JobNotifier.jobsUrl + '/' + job.id + '">' + msg + '</a>';
-    showPopUp(title, link, job.status);
+    showPopUp(job, 1);
   }
 
   function showMsg(jobs) {
-    if(jobs.length == 0) {
+    if(jobs.length === 0) {
       return;
 
     } else if(jobs.length == 1) {
