@@ -1,4 +1,5 @@
 JobNotifier.translations = <%= I18nDictionary.translations.to_json %>;
+JobNotifier.jobsUrl = "<%= AdminHelpers.jobs_url %>";
 
 JobNotifier.onNotify = function(result) {
   DEFAULT_MESSAGES = {
@@ -38,7 +39,7 @@ JobNotifier.onNotify = function(result) {
   }
 
   function showPopUp(title, msg, status) {
-    msg = { title: title, message: msg };
+    msg = { title: title, message: msg, duration: 6000 };
 
     switch(status) {
       case "pending":
@@ -60,7 +61,8 @@ JobNotifier.onNotify = function(result) {
     var jobClass = camelToDash(job.job_class)
     var title = findTranslation(jobClass, job.status, "title");
     var msg = findTranslation(jobClass, job.status, "one");
-    showPopUp(title, msg, job.status);
+    var link = '<a href="' + JobNotifier.jobsUrl + '/' + job.id + '">' + msg + '</a>';
+    showPopUp(title, link, job.status);
   }
 
   function showMsg(jobs) {
