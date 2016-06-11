@@ -1,0 +1,23 @@
+es:
+  enumerize:
+    job_notifier/job:
+      status:
+        failed: Con Errores
+        finished: Completo
+        pending: Pendiente
+  activerecord:
+    models:
+      job:
+        one: Proceso
+        other: Procesos
+    attributes:
+      job_notifier/job:
+        id: ID
+        identifier: Identificador
+        job_id: ID Proceso
+        job_class: Tipo
+        status: Estado
+        result: Resultado
+        notified: Notificado?
+        created_at: Fecha de Creación
+        updated_at: Fecha de Actualización

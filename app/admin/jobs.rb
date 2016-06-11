@@ -21,7 +21,7 @@ ActiveAdmin.register JobNotifier::Job, as: "Job" do
       row :created_at
     end
 
-    panel "Result" do
+    panel JobNotifier::Job.human_attribute_name(:result) do
       ActiveadminJobs::JobResultRenderer.new(self).render
     end unless resource.result.blank?
   end

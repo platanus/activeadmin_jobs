@@ -1,0 +1,23 @@
+en:
+  enumerize:
+    job_notifier/job:
+      status:
+        failed: Failed
+        finished: Finished
+        pending: Pending
+  activerecord:
+    models:
+      job:
+        one: Job
+        other: Jobs
+    attributes:
+      job_notifier/job:
+        id: ID
+        identifier: Identifier
+        job_id: Job ID
+        job_class: Job Type
+        status: Status
+        result: Result
+        notified: Notified?
+        created_at: Created At
+        updated_at: Updated At
