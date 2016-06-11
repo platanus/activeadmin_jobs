@@ -1,3 +1,16 @@
+module AdminHelpers
+  def self.jobs_url
+    url = ["/"]
+
+    if ActiveAdmin.application.default_namespace.present?
+      url << "#{ActiveAdmin.application.default_namespace}/"
+    end
+
+    url << "jobs"
+    url.join("")
+  end
+end
+
 ActiveAdmin.setup do |config|
   config.load_paths += [File.join(ActiveadminJobs::Engine.root, "app", "admin")]
 end

@@ -9,3 +9,11 @@ $finished-color: #27ae60;
   &.failed { background: $failed-color; }
   &.finished { background: $finished-color; }
 }
+
+.growl {
+  a {
+    &:link, &:visited, &:hover, &:active {
+      color: #FFFFFF;
+    }
+  }
+}
