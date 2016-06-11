@@ -8,8 +8,8 @@ en:
       finished:
         title: "Finished Job!"
         one: "the job was completed! :)"
-        other: "jobs where completed! :)"
+        other: "jobs were completed! :)"
       failed:
         title: "Failed Job"
         one: "the job was not completed :("
-        other: "jobs where not completed :("
+        other: "jobs were not completed :("

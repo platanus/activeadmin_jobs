@@ -6,6 +6,7 @@ module ActiveAdminHelpers
   def login_admin_user
     admin_user = AdminUser.create!(email: "admin@example.com", password: 12345678)
     login_as(admin_user, scope: :admin_user)
+    admin_user
   end
 
   def logout_admin_user
