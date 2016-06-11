@@ -1,0 +1,78 @@
+JobNotifier.translations = <%= I18nDictionary.translations.to_json %>;
+
+JobNotifier.onNotify = function(result) {
+  DEFAULT_MESSAGES = {
+    pending: {
+      title: "Pending Job",
+      one: '1 job was added to the queue...',
+      other: 'jobs were added to the queue...'
+    },
+    finished: {
+      title: "Completed Job",
+      one: "1 job was successfully completed!",
+      other: "jobs where successfully completed!"
+    },
+    failed: {
+      title: "Failed Job",
+      one: "1 job was completed, but it contains errors...",
+      other: "jobs where completed, but they contains errors..."
+    }
+  };
+
+  function defaultTranslation(status, count) {
+    return DEFAULT_MESSAGES[status][count]
+  }
+
+  function findTranslation(jobClass, status, key) {
+    try {
+      return JobNotifier.translations[jobClass][status][key];
+    } catch(err) {
+      console.info('Translation not found. Using default...');
+    }
+
+    return defaultTranslation(status, key);
+  }
+
+  function camelToDash(str) {
+     return str.replace(/\W+/g, '_').replace(/([a-z\d])([A-Z])/g, '$1_$2').toLowerCase();
+  }
+
+  function showPopUp(title, msg, status) {
+    msg = { title: title, message: msg };
+
+    switch(status) {
+      case "pending":
+        $.growl.warning(msg);
+        break;
+      case "finished":
+        $.growl.notice(msg);
+        break;
+      case "failed":
+        $.growl.error(msg);
+    }
+  }
+
+  function showMultiJobMsg(jobs) {
+    return 'TODO';
+  }
+
+  function showSingleJobMsg(job) {
+    var jobClass = camelToDash(job.job_class)
+    var title = findTranslation(jobClass, job.status, "title");
+    var msg = findTranslation(jobClass, job.status, "one");
+    showPopUp(title, msg, job.status);
+  }
+
+  function showMsg(jobs) {
+    if(jobs.length == 0) {
+      return;
+
+    } else if(jobs.length == 1) {
+      return showSingleJobMsg(jobs[0]);
+    }
+
+    return showMultiJobMsg(jobs);
+  }
+
+  showMsg(result);
+};
