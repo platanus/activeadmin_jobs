@@ -11,19 +11,6 @@ module ActiveAdminHelpers
   def logout_admin_user
     logout(:admin_user)
   end
-
-  def find_column(attribute, tag = nil)
-    inner_tag = case attribute
-                when :id then "a"
-                when :created_at then nil
-                else "span"
-                end
-
-    inner_tag = tag if tag
-    col = find("td[class=\"col col-#{attribute}\"]")
-    col = col.find(inner_tag) if inner_tag
-    col
-  end
 end
 
 RSpec.configure do |config|

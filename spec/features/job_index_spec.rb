@@ -1,10 +1,10 @@
 require "rails_helper"
 
-describe "Job views", type: :feature do
+describe "Job index", type: :feature do
   context "index view" do
     before do
       login_admin_user
-      @job = JobNotifier::Job.create!
+      @job = create_job(notified: false)
       visit admin_jobs_path
     end
 

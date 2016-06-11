@@ -19,7 +19,10 @@ ActiveAdmin.register JobNotifier::Job, as: "Job" do
       tag_row :status
       bool_row :notified
       row :created_at
-      row :result
     end
+
+    panel "Result" do
+      ActiveadminJobs::JobResultRenderer.new(self).render
+    end unless resource.result.blank?
   end
 end

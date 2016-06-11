@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20160520161115) do
   create_table "job_notifier_jobs", force: :cascade do |t|
     t.string   "identifier"
     t.string   "job_id"
+    t.string   "job_class"
     t.string   "status"
     t.text     "result"
     t.boolean  "notified",   default: false
