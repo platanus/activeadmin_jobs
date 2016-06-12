@@ -20,10 +20,6 @@ JobNotifier.onNotify = function(result) {
     }
   };
 
-  function defaultTranslation(status, count) {
-    return DEFAULT_MESSAGES[status][count];
-  }
-
   function findTranslation(jobClass, status, key) {
     try {
       return JobNotifier.translations[jobClass][status][key];
@@ -31,7 +27,7 @@ JobNotifier.onNotify = function(result) {
       console.info('Translation not found. Using default...', jobClass, status, key);
     }
 
-    return defaultTranslation(status, key);
+    return DEFAULT_MESSAGES[status][key];
   }
 
   function camelToDash(str) {
@@ -98,7 +94,11 @@ JobNotifier.onNotify = function(result) {
     return groupedJobs;
   }
 
-  function showMultiJobMsg(jobs) {
+  function showMsg(jobs) {
+    if(jobs.length === 0) {
+      return;
+    }
+
     var groupedJobs = groupJobsByClass(jobs);
 
     for(var jobClass in groupedJobs) {
@@ -111,21 +111,6 @@ JobNotifier.onNotify = function(result) {
         }
       }
     }
-  }
-
-  function showSingleJobMsg(job) {
-    showPopUp(job, 1);
-  }
-
-  function showMsg(jobs) {
-    if(jobs.length === 0) {
-      return;
-
-    } else if(jobs.length == 1) {
-      return showSingleJobMsg(jobs[0]);
-    }
-
-    return showMultiJobMsg(jobs);
   }
 
   showMsg(result);

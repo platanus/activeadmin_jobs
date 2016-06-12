@@ -30,4 +30,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "capybara"
   s.add_development_dependency "selenium-webdriver"
   s.add_development_dependency "database_cleaner"
+  s.add_development_dependency "daemons"
+  s.add_development_dependency "delayed_job_active_record"
+  s.add_development_dependency "quiet_assets"
 end
