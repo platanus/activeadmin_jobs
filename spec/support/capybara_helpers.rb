@@ -24,6 +24,18 @@ module CapybaraHelpers
     panel.find("div[class=\"panel_contents\"]")
   end
 
+  def notification(pos = 1)
+    find(".growl:nth-of-type(#{pos})")
+  end
+
+  def notification_title(pos = 1)
+    notification(pos).find(".growl-title")
+  end
+
+  def notification_link(pos = 1)
+    notification(pos).find(".growl-message").find("a")
+  end
+
   def create_job(identifier: nil, status: nil, result: nil, notified: nil)
     data = {
       identifier: identifier || SecureRandom.hex,
