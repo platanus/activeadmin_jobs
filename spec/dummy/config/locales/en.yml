@@ -1,10 +1,15 @@
 en:
   activeadmin_jobs:
     job_example:
-      pending:
-        title: "Pending Job"
-        one: "job added to the queue..."
-        other: "jobs were added to the queue..."
+      finished:
+        title: "Finished Job!"
+        one: "the job was completed! :)"
+        other: "jobs were completed! :)"
+      failed:
+        title: "Failed Job"
+        one: "the job was not completed :("
+        other: "jobs were not completed :("
+    job_test:
       finished:
         title: "Finished Job!"
         one: "the job was completed! :)"

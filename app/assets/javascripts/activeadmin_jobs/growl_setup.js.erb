@@ -3,11 +3,6 @@ JobNotifier.jobsUrl = "<%= AdminHelpers.jobs_url %>";
 
 JobNotifier.onNotify = function(result) {
   DEFAULT_MESSAGES = {
-    pending: {
-      title: 'Pending Job',
-      one: '1 job was added to the queue...',
-      other: 'jobs were added to the queue...'
-    },
     finished: {
       title: 'Completed Job',
       one: '1 job was successfully completed!',
@@ -59,9 +54,6 @@ JobNotifier.onNotify = function(result) {
     var msg = prepareMessage(job, count);
 
     switch(job.status) {
-      case 'pending':
-        $.growl.warning(msg);
-        break;
       case 'finished':
         $.growl.notice(msg);
         break;
@@ -78,6 +70,11 @@ JobNotifier.onNotify = function(result) {
 
     for(i = 0; i < jobs.length; i++) {
       var job = jobs[i];
+
+      if(job.status == 'pending') {
+        continue;
+      }
+      
       var jobClass = camelToDash(job.job_class);
 
       if(!groupedJobs[jobClass]) {
