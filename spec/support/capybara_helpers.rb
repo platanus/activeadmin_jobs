@@ -40,7 +40,7 @@ module CapybaraHelpers
     data = {
       identifier: identifier || SecureRandom.hex,
       job_id: 1,
-      job_class: "JobExample",
+      job_class: "JobTest",
       status: status || "pending",
       result: result,
       notified: notified.nil? ? [true, false].sample : notified
