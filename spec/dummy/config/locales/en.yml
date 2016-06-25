@@ -1,6 +1,6 @@
 en:
   activeadmin_jobs:
-    job_example:
+    user_upload_job:
       finished:
         title: "Finished Job!"
         one: "the job was completed! :)"
