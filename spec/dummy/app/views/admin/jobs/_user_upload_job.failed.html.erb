@@ -1,1 +1,10 @@
-<%= result.to_s %>
+<h2>Errors :(</h2>
+
+<% result.each do |record| %>
+  <h3>Row #<%= record[:row] %>:</h3>
+  <ul>
+    <% record[:errors].each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
