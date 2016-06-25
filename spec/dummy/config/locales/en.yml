@@ -2,13 +2,13 @@ en:
   activeadmin_jobs:
     user_upload_job:
       finished:
-        title: "Finished Job!"
-        one: "the job was completed! :)"
-        other: "jobs were completed! :)"
+        title: "Users have been uploaded! :)"
+        one: "One .xls file was completed with no errors. Click here to see the result"
+        other: ".xls files were completed with no errors. Click here to see the result"
       failed:
-        title: "Failed Job"
-        one: "the job was not completed :("
-        other: "jobs were not completed :("
+        title: "Error trying to upload users :("
+        one: "One .xls file could not be uploaded. Click here to see errors"
+        other: ".xls files could not be uploaded. Click here to see errors"
     job_test:
       finished:
         title: "Finished Job!"
