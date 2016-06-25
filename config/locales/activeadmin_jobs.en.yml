@@ -18,6 +18,7 @@ en:
         job_class: Job Type
         status: Status
         result: Result
+        description: Description
         notified: Notified?
         created_at: Created At
         updated_at: Updated At

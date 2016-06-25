@@ -1,6 +1,7 @@
 en:
   activeadmin_jobs:
     user_upload_job:
+      description: "Users upload through .xls file"
       finished:
         title: "Users have been uploaded! :)"
         one: "One .xls file was completed with no errors. Click here to see the result"
