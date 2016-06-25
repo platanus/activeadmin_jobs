@@ -18,6 +18,7 @@ es:
         job_class: Tipo
         status: Estado
         result: Resultado
+        description: Descripción
         notified: Notificado?
         created_at: Fecha de Creación
         updated_at: Fecha de Actualización

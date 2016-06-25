@@ -10,6 +10,7 @@ module ActiveadminJobs
       require_relative "./i18n_dictionary"
       require_relative "./job_result_renderer"
       require_relative "./activeadmin_config"
+      require_relative "./job_extensions"
     end
   end
 end

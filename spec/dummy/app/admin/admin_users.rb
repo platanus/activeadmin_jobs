@@ -33,7 +33,8 @@ ActiveAdmin.register AdminUser do
   end
 
   collection_action :import, title: "Import Users", method: :post do
-    JobExample.perform_later(current_admin_user.job_identifier, [true, false].sample)
-    redirect_to import_form_admin_admin_users_path, notice: "The import process was started. We'll notify you when it's done."
+    UserUploadJob.perform_later(current_admin_user.job_identifier, [true, false].sample)
+    redirect_to(import_form_admin_admin_users_path,
+      notice: "The import process was started. We'll notify you when it's done.")
   end
 end

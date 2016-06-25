@@ -1,5 +1,6 @@
 JobNotifier.translations = <%= I18nDictionary.translations.to_json %>;
 JobNotifier.jobsUrl = "<%= AdminHelpers.jobs_url %>";
+console.info('translations', JobNotifier.translations);
 
 JobNotifier.onNotify = function(result) {
   DEFAULT_MESSAGES = {

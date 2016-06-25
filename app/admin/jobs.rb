@@ -8,6 +8,7 @@ ActiveAdmin.register JobNotifier::Job, as: "Job" do
   index do
     id_column
     tag_column :status
+    column :description
     bool_column :notified
     column :created_at
     actions
@@ -17,6 +18,7 @@ ActiveAdmin.register JobNotifier::Job, as: "Job" do
     attributes_table do
       row :id
       tag_row :status
+      row :description
       bool_row :notified
       row :created_at
     end
