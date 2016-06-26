@@ -1,7 +1,7 @@
 class UserUploadJob < ActiveJob::Base
   def perform_with_feedback(result)
     sleep([*5..20].sample) # faking processing time
-    return "Users loaded successfully" if result
+    return "Users successfully loaded" if result
 
     errors = [
       { row: 4, errors: ["Invalid First Name", "Invalid Category"] },
