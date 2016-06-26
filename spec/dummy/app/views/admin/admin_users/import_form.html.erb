@@ -1,6 +1,6 @@
 <%= semantic_form_for :data, url: { action: :import }, html: { multipart: true }, method: :post do |f| %>
   <%= f.inputs "Form" do %>
-    <%= f.input :source, as: :file, label: "File", :hint => "Excel file with thousands rows that need to be processed on background..." %>
+    <%= f.input :source, as: :file, label: "File", :hint => "Excel file with thousands rows that need to be processed in background..." %>
   <% end %>
   <%= f.actions do %>
     <%= f.action :submit, as: :button, label: "Import" %>
