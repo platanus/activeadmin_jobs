@@ -15,7 +15,6 @@ Gem::Specification.new do |s|
   s.license     = "MIT"
 
   s.files = `git ls-files`.split($/).reject { |fn| fn.start_with? "spec" }
-  s.test_files = Dir["spec/**/*"]
 
   s.add_dependency "rails", "~> 4.2", ">= 4.2.0"
   s.add_dependency "job_notifier", "~> 1.1", ">= 1.1.1"
