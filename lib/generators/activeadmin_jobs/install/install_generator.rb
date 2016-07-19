@@ -15,4 +15,8 @@ class ActiveadminJobs::InstallGenerator < Rails::Generators::Base
   rescue Errno::ENOENT
     inject_into_file("#{file_path}.css.scss", line_to_add, after: reference)
   end
+
+  def run_job_notifier_generator
+    generate("job_notifier:install")
+  end
 end

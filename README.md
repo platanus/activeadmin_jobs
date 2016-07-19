@@ -12,6 +12,10 @@ It's a Rails engine that allows you to play nice with [Active Job](https://githu
 Add to your Gemfile:
 
 ```ruby
+source 'https://rails-assets.org' do
+  gem 'rails-assets-growl', '~> 1.3.1'
+end
+
 gem "activeadmin_jobs"
 ```
 
@@ -20,7 +24,7 @@ bundle install
 ```
 
 ```bash
-rails generate job_notifier:install
+rails generate activeadmin_jobs:install
 ```
 
 If you use `AdminUser` class in `ActiveAdmin` you will need to add the following code:
