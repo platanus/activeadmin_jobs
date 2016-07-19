@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 source 'https://rails-assets.org' do
-  gem 'rails-assets-growl'
+  gem 'rails-assets-growl', '~> 1.3.1'
 end
 
 # Declare your gem's dependencies in activeadmin_jobs.gemspec.

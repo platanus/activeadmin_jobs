@@ -21,7 +21,6 @@ Gem::Specification.new do |s|
   s.add_dependency "devise", "~> 3.5", ">= 3.5.0"
   s.add_dependency "activeadmin", "~> 1.0.0.pre2"
   s.add_dependency "activeadmin_addons", "~> 0.9", ">= 0.9.2"
-  s.add_dependency "rails-assets-growl", "~> 1.3", ">= 1.3.1"
 
   s.add_development_dependency "pry-rails"
   s.add_development_dependency "sqlite3"
