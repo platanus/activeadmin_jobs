@@ -1,0 +1,21 @@
+language: ruby
+rvm:
+- 2.3.1
+before_install: gem install bundler -v 1.12.5
+before_script:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
+addons:
+  firefox: "31.0esr"
+script:
+  - cd spec/dummy && RAILS_ENV=test bundle exec rake db:create db:migrate
+  - cd ../.. && bundle exec rspec spec
+deploy:
+  provider: rubygems
+  api_key:
+    secure: dHxqTlIlkQvCOMG5acKpJaD/Sh+5K7tQNYrvXjJjAByLeFRjRP9lTduVgJgMn8Dj+r71WwVWmKlAQ8NU4/syBUpBRnrXHZ3t9mt6jYDzBI+e0j6aOPLYrXlC9hEPgI/g9TrG9p45KAFgCK+1zg4wD6l9HAe4nHAJ8IyMCWJRcTtAEQcMiNBKzObA2V1ygyRkNR32wF3k025J+nMNlblZ9s5ptcU2UVcE4XT49R8kWtvXOZPX9k1TsRnJ3pSNCmyOz6mHOiTmSS587ds+gt4xSghIgKUTzVYBks5buY3fQ6eXs4QtebOE1JT3yVWJkvRaGBhiABBENidNHQCbo3METYaPy+5GkxmdZ+2TiZhF4cMfGdXJhwEnGkKfrbGdFGn0s/RcDWcUzb/J11wotj1gi8dQ2ZvlSF/gZaO9ZaYkkq67QewhgebLrTyuU8kfsqqad2tLMshPSUBNWO1zU+H2pJinP5KV/zGFcOCrKFkSPa25fmR4VyG13pCBck8A2dp9CeRTG9lkczg6e7OoIoX8lGN5uoQZ2ITFxi0/fSMUeyxxizJKg+HL7zTwioz9zp/TqQROgcpDYK9/0lFPIzG2Ru4LteMhuqsdkqvrFDpodt+F0WEhWzipEctjr7l2mt6wbibgcqfHPxw269bWZW05prOkzxfAf7WidKHeOhDfRhI=
+  gem: activeadmin_jobs
+  on:
+    tags: true
+    repo: platanus/activeadmin_jobs
