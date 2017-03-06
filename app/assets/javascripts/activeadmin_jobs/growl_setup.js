@@ -1,7 +1,3 @@
-JobNotifier.translations = <%= I18nDictionary.translations.to_json %>;
-JobNotifier.jobsUrl = "<%= AdminHelpers.jobs_url %>";
-console.info('translations', JobNotifier.translations);
-
 JobNotifier.onNotify = function(result) {
   DEFAULT_MESSAGES = {
     finished: {
@@ -18,7 +14,8 @@ JobNotifier.onNotify = function(result) {
 
   function findTranslation(jobClass, status, key) {
     try {
-      return JobNotifier.translations[jobClass][status][key];
+      var translations = getTranslations();
+      return translations[jobClass][status][key];
     } catch(err) {
       console.info('Translation not found. Using default...', jobClass, status, key);
     }
@@ -30,9 +27,19 @@ JobNotifier.onNotify = function(result) {
      return str.replace(/\W+/g, '_').replace(/([a-z\d])([A-Z])/g, '$1_$2').toLowerCase();
   }
 
+  function getTranslations() {
+    var body = document.querySelector('body');
+    return JSON.parse(body.dataset.translations);
+  }
+
+  function getJobsUrl() {
+    var body = document.querySelector('body');
+    return body.dataset.jobsUrl;
+  }
+
   function prepareMessage(job, count) {
     var jobClass = camelToDash(job.job_class);
-    var jobsUrl = JobNotifier.jobsUrl;
+    var jobsUrl = getJobsUrl();
     var msg = '';
 
     if(count == 1) {
