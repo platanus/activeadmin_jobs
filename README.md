@@ -1,4 +1,4 @@
-# Active Admin Jobs
+# Active Admin Jobs [![Build Status](https://secure.travis-ci.org/platanus/activeadmin_jobs.svg?branch=master)](http://travis-ci.org/platanus/activeadmin_jobs)
 
 It's a Rails engine that allows you to play nice with [Active Job](https://github.com/rails/activejob) in [Active Admin](https://github.com/activeadmin/activeadmin) providing user feedback.
 
