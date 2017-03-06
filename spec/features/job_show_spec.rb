@@ -21,12 +21,6 @@ describe "Job index", type: :feature do
         expect(row.text).to eq("Pending")
       end
 
-      it "shows notified row" do
-        row = find_row(:notified)
-        expect(row[:class]).to eq("bool-value false-value")
-        expect(row.text).to eq("✗")
-      end
-
       it "shows created at row" do
         col = find_row(:created_at, nil)
         expect(col.text).to eq(I18n.l(@job.created_at, format: :long))

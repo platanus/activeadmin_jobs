@@ -2,14 +2,12 @@ ActiveAdmin.register JobNotifier::Job, as: "Job" do
   actions :index, :show
 
   filter :status
-  filter :notified
   filter :created_at
 
   index do
     id_column
     tag_column :status
     column :description
-    bool_column :notified
     column :created_at
     actions
   end
@@ -19,12 +17,13 @@ ActiveAdmin.register JobNotifier::Job, as: "Job" do
       row :id
       tag_row :status
       row :description
-      bool_row :notified
       row :created_at
     end
 
-    panel JobNotifier::Job.human_attribute_name(:result) do
-      ActiveadminJobs::JobResultRenderer.new(self).render
-    end unless resource.result.blank?
+    if !resource.result.blank?
+      panel JobNotifier::Job.human_attribute_name(:result) do
+        ActiveadminJobs::JobResultRenderer.new(self).render
+      end
+    end
   end
 end
