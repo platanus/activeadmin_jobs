@@ -3,8 +3,8 @@ require "rails_helper"
 describe "Job index", type: :feature do
   context "index view" do
     before do
-      login_admin_user
-      @job = create_job(notified: false)
+      @admin = login_admin_user
+      @job = create_job(identifier: @admin.job_identifier, notified: false)
       visit admin_jobs_path
     end
 

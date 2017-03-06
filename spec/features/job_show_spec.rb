@@ -2,11 +2,11 @@ require "rails_helper"
 
 describe "Job index", type: :feature do
   context "index view" do
-    before { login_admin_user }
+    before { @admin = login_admin_user }
 
     context "with job without result" do
       before do
-        @job = create_job(result: nil, notified: false)
+        @job = create_job(identifier: @admin.job_identifier, result: nil, notified: false)
         visit admin_job_path(@job)
       end
 
@@ -32,7 +32,7 @@ describe "Job index", type: :feature do
     end
 
     context "with job with result" do
-      before { @job = create_job(result: "result") }
+      before { @job = create_job(identifier: @admin.job_identifier, result: "result") }
 
       context "with finished status" do
         before do

@@ -4,6 +4,13 @@ ActiveAdmin.register JobNotifier::Job, as: "Job" do
   filter :status
   filter :created_at
 
+  controller do
+    def scoped_collection
+      user = send(ActiveAdmin.application.current_user_method)
+      JobNotifier::Job.where(identifier: user.job_identifier)
+    end
+  end
+
   index do
     id_column
     tag_column :status
