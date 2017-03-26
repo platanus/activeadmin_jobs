@@ -3,18 +3,18 @@ rvm:
 - 2.3.1
 before_install: gem install bundler -v 1.12.5
 before_script:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-  - sleep 3 # give xvfb some time to start
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- sleep 3
 addons:
-  firefox: "31.0esr"
+  firefox: 31.0esr
 script:
-  - cd spec/dummy && RAILS_ENV=test bundle exec rake db:create db:migrate
-  - cd ../.. && bundle exec rspec spec
+- RAILS_ENV=test bundle exec rake db:create db:migrate
+- bundle exec rspec spec
 deploy:
   provider: rubygems
   api_key:
-    secure: bCeyRAepiV3YsCQfwrvYgZyxm6ys1gHpRyZ1p7z8c0pYxnOzkvEJF1RDuuMwU6fo2AIQH2LqfhywfPM7NCq96P3lGqQhZmgTiiZN7603akUXdU12nx40KputjJv2DhiGtLGOv3Ju5FVgBGQtxopWhvdRB/uaAzEL71YI/TRxfaGedPD46cWYF0Vj+b2bxe5b7f06NKJ+niE0YFpAho/GVY3eTbyCzqKGVwdZcOAWXdLoIdfhUL/wLxWUXhYIuBpDun/WQM0Oe0AcWAXSl8whys7jl+R/WbWDyqTjyNID/bKg3vdRilULU8tg04s7jq+AqnjqQ4BOGjJNzvTdhLs+H3tPfljK/sJr7bmeDZLe4vxlgGUa6dlKtuKOXZE0nUuY0nG5aHTRy8Yd4QRAQX5i/qGj+WIhpRlQMP8LqlTnZfGvm+rKu+a6aaQIbYeTuqRtKzRDwq6ZDWWjkeTEUSjVuIcfY2ZuWHj2CWWpbQlwz4yBauqc7/7GTUKVrDZRxE1ljU7r3TS5vQ0k8k7Ot4fb5uUpZReEvBxhLedLdS3IDI9UCREg07t5BQ1WQ9IkDmkirXkwNkXhBbJRA2borUsUewy1xh9qvrrh2ZNHr4HhLy7gALdj0y2omo/gehWiZ5WHwTASF4KsXki13bgt8ABIcIqbCleBdh/JGeUsthlHygc=
+    secure: KWyxLcTNDKLaUjXelwyTNPtB/HcolK02mqrpJVwgA7OW6htXqMW+HBVcIizxzNNKouFgkfr3rqwthRNSRF0RtoEEeLihkx4VPGq7INe3hw8A5+urLchBFgzslYX/dMuoBazifXr4xTX2qeD53yjr2KBlPU8p8a0EhwPYjkcD12A/f9gNehyoLSRLALH6HCfBOJngqRsEdhsHGYuz8DHE5nb8B+4g+POmQlx8Yapm7Z/8axtXQNZk9yt3ZeujLr5AC8SeFEpTJlFc8yVffrTh6ALFznnYZ/H2DuNQWgjx1oEiKCBDYlKNmy6JJXB07LCpCcaaWLdezHsB/eMYY9M5WDGMhagzmavbhQzUtse/NvXgbpRDeW2ODREriPSOklMP830YIvqHrYqA/3kaz474ChZaSGRzeIEpMTcC6VjtDluzo+VhJkfo2pGQnACuoKXI0fCCtK++Nw9QGIem4k1ro4bjNDel7F+CfAlFDF+MCTKQBdg04gX6fcNKJptuvKtT9/DTC0hte2/ytzGVBw5qzSU9m1nAy52QzJUPldfB96h8CkwoM2oYZTIqdHG5/tbBFPNWjC1H3CgYJ/mGcH1Vs2pTIRXYGBbDdOR6UeIMEj4k8NwErW7xJJPCv9qQCatE5235I9aX/zRAHowUkmkvtHhHt33ItBkqfKPchluRlIY=
   gem: activeadmin_jobs
   on:
     tags: true
