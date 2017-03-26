@@ -1,3 +1,24 @@
+require 'simplecov'
+require 'coveralls'
+
+formatters = [SimpleCov::Formatter::HTMLFormatter, Coveralls::SimpleCov::Formatter]
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter::new(formatters)
+
+SimpleCov.start do
+  add_filter do |src|
+    r = [
+      src.filename =~ /admin/,
+      src.filename =~ /lib/,
+      src.filename =~ /models/,
+      src.filename =~ /controllers/
+    ].uniq
+    r.count == 1 && r.first.nil?
+  end
+
+  add_filter "engine.rb"
+  add_filter "spec.rb"
+end
+
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= "test"
 require File.expand_path("../dummy/config/environment", __FILE__)
