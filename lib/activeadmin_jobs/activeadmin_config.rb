@@ -16,10 +16,10 @@ ActiveAdmin.setup do |config|
 end
 
 class ActiveAdmin::Views::Pages::Base
-  alias_method :original_add_classes_to_body, :add_classes_to_body
+  alias_method :adj_add_classes_to_body, :add_classes_to_body
 
   def add_classes_to_body
-    original_add_classes_to_body
+    adj_add_classes_to_body
     current_user_method = ActiveAdmin.application.current_user_method
 
     if current_user_method
