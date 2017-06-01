@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    activeadmin_jobs (0.3.0)
+    activeadmin_jobs (0.4.0)
       activeadmin (>= 1.0.0.pre2)
       activeadmin_addons (>= 0.12.0)
       devise (>= 3.5.0)
