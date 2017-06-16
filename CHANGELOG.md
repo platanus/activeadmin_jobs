@@ -2,7 +2,15 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+### Unreleased
+
+##### Fixed
+
+- Avoid running ActiveAdmin.setup in the engine. This is causing a rare performance issue.
+
 ### v0.4.0
+
+##### Changed
 
 - Change dependency versions to be more flexible.
 

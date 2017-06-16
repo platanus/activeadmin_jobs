@@ -11,9 +11,7 @@ module AdminHelpers
   end
 end
 
-ActiveAdmin.setup do |config|
-  config.load_paths += [File.join(ActiveadminJobs::Engine.root, "app", "admin")]
-end
+ActiveAdmin.application.load_paths += [File.join(ActiveadminJobs::Engine.root, "app", "admin")]
 
 class ActiveAdmin::Views::Pages::Base
   alias_method :adj_add_classes_to_body, :add_classes_to_body
