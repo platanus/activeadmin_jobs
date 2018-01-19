@@ -15,7 +15,7 @@ module ActiveadminJobs
     private
 
     def partial_path
-      "#{job.job_class.tableize.singularize}.#{job.status}.html.erb"
+      "#{job.job_class.demodulize.tableize.singularize}.#{job.status}.html.erb"
     end
 
     def formatted_result
