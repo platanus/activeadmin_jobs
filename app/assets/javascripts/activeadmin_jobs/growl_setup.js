@@ -25,7 +25,7 @@ JobNotifier.onNotify = function(result) {
 
   function camelToDash(str) {
     var parts = str.split('::');
-    str = parts[parts.length - 1].str.replace(/\W+/g, '_');
+    str = parts[parts.length - 1].replace(/\W+/g, '_');
     return str.replace(/([a-z\d])([A-Z])/g, '$1_$2').toLowerCase();
   }
 
