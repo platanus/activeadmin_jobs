@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+### v0.5.1
+
+##### Fixed
+
+- Demodulize job_class attribute to get the right path in js file too.
+
 ### v0.5.0
 
 ##### Added
