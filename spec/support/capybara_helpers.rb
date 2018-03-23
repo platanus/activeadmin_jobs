@@ -1,3 +1,7 @@
+require "capybara/rspec"
+require "capybara/rails"
+require "selenium-webdriver"
+
 module CapybaraHelpers
   def find_column(attribute, tag = nil)
     inner_tag = case attribute
@@ -51,5 +55,19 @@ module CapybaraHelpers
 end
 
 RSpec.configure do |config|
+  Capybara.register_driver :chrome do |app|
+    Capybara::Selenium::Driver.new(app, browser: :chrome)
+  end
+
+  Capybara.register_driver :headless_chrome do |app|
+    capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
+      chromeOptions: { args: %w(headless) }
+    )
+    Capybara::Selenium::Driver.new(app, browser: :chrome, desired_capabilities: capabilities)
+  end
+
+  # change to :chrome if you want to see the browser running.
+  Capybara.javascript_driver = :headless_chrome
+
   config.include CapybaraHelpers
 end

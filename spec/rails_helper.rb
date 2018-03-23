@@ -4,8 +4,6 @@ require File.expand_path("../dummy/config/environment", __FILE__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require "rspec/rails"
-require "capybara/rspec"
-require "capybara/rails"
 
 engine_path = File.join(File.dirname(__FILE__), '../')
 Dir[File.join(engine_path, "spec/support/**/*.rb")].each { |f| require f }
